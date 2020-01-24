@@ -27,6 +27,22 @@ function sendHttpRequest(method, url) {
 }
 
 
+async function fetchPosts(){
+   const responseData = await sendHttpRequest(
+       'GET', 
+       "https://jsonplaceholder.typicode.com/posts");
+
+        const listOfPost = responseData;
+        for (const post of listOfPost) {
+            const postEl = document.importNode(postTemplate.content, true);
+            postEl.querySelector('h2').textContent = post.title.toUpperCase();
+            postEl.querySelector('p').textContent = post.body;
+            listElement.append(postEl);
+        }
+    }
+
+    fetchPosts()
+
 
 
 
